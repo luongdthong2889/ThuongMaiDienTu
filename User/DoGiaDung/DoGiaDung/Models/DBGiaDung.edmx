@@ -1,0 +1,747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBGiaDungModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="paswword" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CATALOG">
+          <Key>
+            <PropertyRef Name="catalog_id" />
+          </Key>
+          <Property Name="catalog_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="catalog_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="sort_order" Type="int" />
+          <Property Name="description" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="FEEDBACK">
+          <Key>
+            <PropertyRef Name="feedback_id" />
+          </Key>
+          <Property Name="feedback_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_email" Type="nchar" MaxLength="50" />
+          <Property Name="user_phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="user_address" Type="nvarchar" MaxLength="100" />
+          <Property Name="feedback_conten" Type="nvarchar" MaxLength="100" />
+          <Property Name="feedback_created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NEW">
+          <Key>
+            <PropertyRef Name="new_id" />
+          </Key>
+          <Property Name="new_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tag_id" Type="int" Nullable="false" />
+          <Property Name="new_catalog_id" Type="int" Nullable="false" />
+          <Property Name="new_created_by" Type="int" Nullable="false" />
+          <Property Name="tittle" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" />
+          <Property Name="new_image" Type="nvarchar" MaxLength="50" />
+          <Property Name="detail" Type="nvarchar" MaxLength="50" />
+          <Property Name="new_created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transaction_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="amout" Type="int" />
+          <Property Name="data" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_status" Type="int" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="catalog_id" Type="int" Nullable="false" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" />
+          <Property Name="discount" Type="int" />
+          <Property Name="product_status" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="vat" Type="int" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" />
+          <Property Name="image_list" Type="nvarchar" MaxLength="100" />
+          <Property Name="image_link" Type="nvarchar" MaxLength="100" />
+          <Property Name="price_out" Type="int" />
+          <Property Name="price_in" Type="int" />
+        </EntityType>
+        <EntityType Name="SLIDE">
+          <Key>
+            <PropertyRef Name="slide_id" />
+          </Key>
+          <Property Name="slide_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="slide_order" Type="int" />
+          <Property Name="link" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TAG">
+          <Key>
+            <PropertyRef Name="tag_id" />
+          </Key>
+          <Property Name="tag_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tag_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TRANSACTION">
+          <Key>
+            <PropertyRef Name="transaction_id" />
+          </Key>
+          <Property Name="transaction_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="transaction_status" Type="int" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_email" Type="nchar" MaxLength="50" />
+          <Property Name="user_phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="user_address" Type="nvarchar" MaxLength="100" />
+          <Property Name="amount" Type="int" />
+          <Property Name="payment" Type="int" />
+          <Property Name="payment_info" Type="nvarchar" MaxLength="50" />
+          <Property Name="message" Type="nvarchar" MaxLength="100" />
+          <Property Name="transaction_created" Type="datetime" />
+          <Property Name="security" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_email" Type="nchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_address" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="resetPasswordCode" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_FEEDBACK_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="FEEDBACK" Type="Self.FEEDBACK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="FEEDBACK">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEW_ADMIN">
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="1" />
+          <End Role="NEW" Type="Self.NEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="admin_id" />
+            </Principal>
+            <Dependent Role="NEW">
+              <PropertyRef Name="new_created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEW_CATALOG">
+          <End Role="CATALOG" Type="Self.CATALOG" Multiplicity="1" />
+          <End Role="NEW" Type="Self.NEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOG">
+              <PropertyRef Name="catalog_id" />
+            </Principal>
+            <Dependent Role="NEW">
+              <PropertyRef Name="new_catalog_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEW_TAG">
+          <End Role="TAG" Type="Self.TAG" Multiplicity="1" />
+          <End Role="NEW" Type="Self.NEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAG">
+              <PropertyRef Name="tag_id" />
+            </Principal>
+            <Dependent Role="NEW">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_TRANSACTION">
+          <End Role="TRANSACTION" Type="Self.TRANSACTION" Multiplicity="1" />
+          <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANSACTION">
+              <PropertyRef Name="transaction_id" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="transaction_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_CATALOG">
+          <End Role="CATALOG" Type="Self.CATALOG" Multiplicity="1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOG">
+              <PropertyRef Name="catalog_id" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="catalog_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="TRANSACTION" Type="Self.TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="TRANSACTION">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBGiaDungModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATALOG" EntityType="Self.CATALOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FEEDBACK" EntityType="Self.FEEDBACK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NEW" EntityType="Self.NEW" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDER" EntityType="Self.ORDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SLIDE" EntityType="Self.SLIDE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAG" EntityType="Self.TAG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANSACTION" EntityType="Self.TRANSACTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FEEDBACK_USER" Association="Self.FK_FEEDBACK_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="FEEDBACK" EntitySet="FEEDBACK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEW_ADMIN" Association="Self.FK_NEW_ADMIN">
+            <End Role="ADMIN" EntitySet="ADMIN" />
+            <End Role="NEW" EntitySet="NEW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEW_CATALOG" Association="Self.FK_NEW_CATALOG">
+            <End Role="CATALOG" EntitySet="CATALOG" />
+            <End Role="NEW" EntitySet="NEW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEW_TAG" Association="Self.FK_NEW_TAG">
+            <End Role="TAG" EntitySet="TAG" />
+            <End Role="NEW" EntitySet="NEW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_PRODUCT" Association="Self.FK_ORDER_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="ORDER" EntitySet="ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_TRANSACTION" Association="Self.FK_ORDER_TRANSACTION">
+            <End Role="TRANSACTION" EntitySet="TRANSACTION" />
+            <End Role="ORDER" EntitySet="ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_CATALOG" Association="Self.FK_PRODUCT_CATALOG">
+            <End Role="CATALOG" EntitySet="CATALOG" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_USER" Association="Self.FK_TRANSACTION_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="TRANSACTION" EntitySet="TRANSACTION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBGiaDungModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="paswword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NEWs" Relationship="Self.FK_NEW_ADMIN" FromRole="ADMIN" ToRole="NEW" />
+        </EntityType>
+        <EntityType Name="CATALOG">
+          <Key>
+            <PropertyRef Name="catalog_id" />
+          </Key>
+          <Property Name="catalog_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="catalog_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="parent_id" Type="Int32" />
+          <Property Name="sort_order" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="NEWs" Relationship="Self.FK_NEW_CATALOG" FromRole="CATALOG" ToRole="NEW" />
+          <NavigationProperty Name="PRODUCTs" Relationship="Self.FK_PRODUCT_CATALOG" FromRole="CATALOG" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="FEEDBACK">
+          <Key>
+            <PropertyRef Name="feedback_id" />
+          </Key>
+          <Property Name="feedback_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="user_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="user_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="feedback_conten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="feedback_created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_FEEDBACK_USER" FromRole="FEEDBACK" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="NEW">
+          <Key>
+            <PropertyRef Name="new_id" />
+          </Key>
+          <Property Name="new_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tag_id" Type="Int32" Nullable="false" />
+          <Property Name="new_catalog_id" Type="Int32" Nullable="false" />
+          <Property Name="new_created_by" Type="Int32" Nullable="false" />
+          <Property Name="tittle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="new_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="detail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="new_created" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ADMIN" Relationship="Self.FK_NEW_ADMIN" FromRole="NEW" ToRole="ADMIN" />
+          <NavigationProperty Name="CATALOG" Relationship="Self.FK_NEW_CATALOG" FromRole="NEW" ToRole="CATALOG" />
+          <NavigationProperty Name="TAG" Relationship="Self.FK_NEW_TAG" FromRole="NEW" ToRole="TAG" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transaction_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="amout" Type="Int32" />
+          <Property Name="data" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_status" Type="Int32" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_ORDER_PRODUCT" FromRole="ORDER" ToRole="PRODUCT" />
+          <NavigationProperty Name="TRANSACTION" Relationship="Self.FK_ORDER_TRANSACTION" FromRole="ORDER" ToRole="TRANSACTION" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="catalog_id" Type="Int32" Nullable="false" />
+          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="discount" Type="Int32" />
+          <Property Name="product_status" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="vat" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="image_list" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="image_link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="price_out" Type="Int32" />
+          <Property Name="price_in" Type="Int32" />
+          <NavigationProperty Name="CATALOG" Relationship="Self.FK_PRODUCT_CATALOG" FromRole="PRODUCT" ToRole="CATALOG" />
+          <NavigationProperty Name="ORDERs" Relationship="Self.FK_ORDER_PRODUCT" FromRole="PRODUCT" ToRole="ORDER" />
+        </EntityType>
+        <EntityType Name="SLIDE">
+          <Key>
+            <PropertyRef Name="slide_id" />
+          </Key>
+          <Property Name="slide_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="slide_order" Type="Int32" />
+          <Property Name="link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TAG">
+          <Key>
+            <PropertyRef Name="tag_id" />
+          </Key>
+          <Property Name="tag_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tag_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NEWs" Relationship="Self.FK_NEW_TAG" FromRole="TAG" ToRole="NEW" />
+        </EntityType>
+        <EntityType Name="TRANSACTION">
+          <Key>
+            <PropertyRef Name="transaction_id" />
+          </Key>
+          <Property Name="transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="transaction_status" Type="Int32" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="user_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="user_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="payment" Type="Int32" />
+          <Property Name="payment_info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="message" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="transaction_created" Type="DateTime" Precision="3" />
+          <Property Name="security" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ORDERs" Relationship="Self.FK_ORDER_TRANSACTION" FromRole="TRANSACTION" ToRole="ORDER" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_TRANSACTION_USER" FromRole="TRANSACTION" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="user_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="resetPasswordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FEEDBACKs" Relationship="Self.FK_FEEDBACK_USER" FromRole="USER" ToRole="FEEDBACK" />
+          <NavigationProperty Name="TRANSACTIONs" Relationship="Self.FK_TRANSACTION_USER" FromRole="USER" ToRole="TRANSACTION" />
+        </EntityType>
+        <Association Name="FK_NEW_ADMIN">
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="1" />
+          <End Role="NEW" Type="Self.NEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="admin_id" />
+            </Principal>
+            <Dependent Role="NEW">
+              <PropertyRef Name="new_created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEW_CATALOG">
+          <End Role="CATALOG" Type="Self.CATALOG" Multiplicity="1" />
+          <End Role="NEW" Type="Self.NEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOG">
+              <PropertyRef Name="catalog_id" />
+            </Principal>
+            <Dependent Role="NEW">
+              <PropertyRef Name="new_catalog_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_CATALOG">
+          <End Role="CATALOG" Type="Self.CATALOG" Multiplicity="1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOG">
+              <PropertyRef Name="catalog_id" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="catalog_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="FEEDBACK" Type="Self.FEEDBACK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="FEEDBACK">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEW_TAG">
+          <End Role="TAG" Type="Self.TAG" Multiplicity="1" />
+          <End Role="NEW" Type="Self.NEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAG">
+              <PropertyRef Name="tag_id" />
+            </Principal>
+            <Dependent Role="NEW">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDER_TRANSACTION">
+          <End Role="TRANSACTION" Type="Self.TRANSACTION" Multiplicity="1" />
+          <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANSACTION">
+              <PropertyRef Name="transaction_id" />
+            </Principal>
+            <Dependent Role="ORDER">
+              <PropertyRef Name="transaction_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="TRANSACTION" Type="Self.TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="TRANSACTION">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBGiaDungEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+          <EntitySet Name="CATALOGs" EntityType="Self.CATALOG" />
+          <EntitySet Name="FEEDBACKs" EntityType="Self.FEEDBACK" />
+          <EntitySet Name="NEWs" EntityType="Self.NEW" />
+          <EntitySet Name="ORDERs" EntityType="Self.ORDER" />
+          <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
+          <EntitySet Name="SLIDEs" EntityType="Self.SLIDE" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TAGs" EntityType="Self.TAG" />
+          <EntitySet Name="TRANSACTIONs" EntityType="Self.TRANSACTION" />
+          <EntitySet Name="USERs" EntityType="Self.USER" />
+          <AssociationSet Name="FK_NEW_ADMIN" Association="Self.FK_NEW_ADMIN">
+            <End Role="ADMIN" EntitySet="ADMINs" />
+            <End Role="NEW" EntitySet="NEWs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEW_CATALOG" Association="Self.FK_NEW_CATALOG">
+            <End Role="CATALOG" EntitySet="CATALOGs" />
+            <End Role="NEW" EntitySet="NEWs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_CATALOG" Association="Self.FK_PRODUCT_CATALOG">
+            <End Role="CATALOG" EntitySet="CATALOGs" />
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_USER" Association="Self.FK_FEEDBACK_USER">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="FEEDBACK" EntitySet="FEEDBACKs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEW_TAG" Association="Self.FK_NEW_TAG">
+            <End Role="TAG" EntitySet="TAGs" />
+            <End Role="NEW" EntitySet="NEWs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_PRODUCT" Association="Self.FK_ORDER_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="ORDER" EntitySet="ORDERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDER_TRANSACTION" Association="Self.FK_ORDER_TRANSACTION">
+            <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
+            <End Role="ORDER" EntitySet="ORDERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_USER" Association="Self.FK_TRANSACTION_USER">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBGiaDungModelStoreContainer" CdmEntityContainer="DBGiaDungEntities">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="paswword" ColumnName="paswword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATALOGs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.CATALOG">
+              <MappingFragment StoreEntitySet="CATALOG">
+                <ScalarProperty Name="catalog_id" ColumnName="catalog_id" />
+                <ScalarProperty Name="catalog_name" ColumnName="catalog_name" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="sort_order" ColumnName="sort_order" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FEEDBACKs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.FEEDBACK">
+              <MappingFragment StoreEntitySet="FEEDBACK">
+                <ScalarProperty Name="feedback_id" ColumnName="feedback_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="feedback_conten" ColumnName="feedback_conten" />
+                <ScalarProperty Name="feedback_created" ColumnName="feedback_created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NEWs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.NEW">
+              <MappingFragment StoreEntitySet="NEW">
+                <ScalarProperty Name="new_id" ColumnName="new_id" />
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+                <ScalarProperty Name="new_catalog_id" ColumnName="new_catalog_id" />
+                <ScalarProperty Name="new_created_by" ColumnName="new_created_by" />
+                <ScalarProperty Name="tittle" ColumnName="tittle" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="new_image" ColumnName="new_image" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="new_created" ColumnName="new_created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDERs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.ORDER">
+              <MappingFragment StoreEntitySet="ORDER">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="amout" ColumnName="amout" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="catalog_id" ColumnName="catalog_id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="product_status" ColumnName="product_status" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="vat" ColumnName="vat" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image_list" ColumnName="image_list" />
+                <ScalarProperty Name="image_link" ColumnName="image_link" />
+                <ScalarProperty Name="price_out" ColumnName="price_out" />
+                <ScalarProperty Name="price_in" ColumnName="price_in" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SLIDEs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.SLIDE">
+              <MappingFragment StoreEntitySet="SLIDE">
+                <ScalarProperty Name="slide_id" ColumnName="slide_id" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="slide_order" ColumnName="slide_order" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBGiaDungModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAGs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.TAG">
+              <MappingFragment StoreEntitySet="TAG">
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+                <ScalarProperty Name="tag_name" ColumnName="tag_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSACTIONs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.TRANSACTION">
+              <MappingFragment StoreEntitySet="TRANSACTION">
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="transaction_status" ColumnName="transaction_status" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="payment" ColumnName="payment" />
+                <ScalarProperty Name="payment_info" ColumnName="payment_info" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="transaction_created" ColumnName="transaction_created" />
+                <ScalarProperty Name="security" ColumnName="security" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="DBGiaDungModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="resetPasswordCode" ColumnName="resetPasswordCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

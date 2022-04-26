@@ -1,0 +1,7 @@
+﻿@using DoGiaDung.Models;
+@model List<CATALOG>
+
+@foreach (var item in Model)
+{
+    <li>@Html.ActionLink(item.catalog_name, "Index", "Product", new { catalog = item.catalog_name.Trim() }, "")</li>
+}

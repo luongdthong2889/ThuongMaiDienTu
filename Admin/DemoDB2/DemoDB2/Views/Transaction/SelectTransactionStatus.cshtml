@@ -1,0 +1,12 @@
+﻿@model DemoDB2.Models.TRANSACTION
+@Html.DropDownListFor(model => model.transaction_status,
+    new SelectList(Model.ListTransactionStatus.OrderBy(model => model.transaction_status), "transaction_status", "transaction_status"), "--Chọn Trạng Thái--")
+
+
+@*---BUG BUG BUG---*@
+
+
+    @*@Html.DropDownList("ListTransactionStatus", new List<SelectListItem>
+    { new SelectListItem { Text = "Chưa Thanh Toán", Value = "1", Selected =true},
+      new SelectListItem { Text = "Đã Thanh Toán", Value = "2"}
+      }, "Chọn Trạng Thái")*@

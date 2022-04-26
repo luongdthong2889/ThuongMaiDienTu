@@ -1,0 +1,154 @@
+﻿@model DemoDB2.Models.PRODUCT
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Chi tiết sản phẩm</h6>
+            </div>
+            <div class="card-body">
+                <h4>Thông tin sản phẩm</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.price)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.price)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.discount)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.discount)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.product_status)
+                    </dt>
+
+                    <dd>
+                        @{
+                            if (Model.product_status == 1)
+                            {
+                                <p>Còn Hàng</p>
+                            }
+                            else if (Model.product_status == 2)
+                            {
+                                <p>Hết Hàng</p>
+                            }
+                        }
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.quantity)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.quantity)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.vat)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.vat)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.description)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.image_list)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.image_list)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.image_link)
+                    </dt>
+
+                    <dd>
+                        <img src="@Url.Content(Model.image_link)" alt="" height="50" width="50">
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.price_out)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.price_out)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.price_in)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.price_in)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CATALOG.catalog_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CATALOG.catalog_name)
+                    </dd>
+                    <p>
+                        @Html.ActionLink("Sửa", "Edit", new { id = Model.product_id }) |
+                        @Html.ActionLink("Về Danh sách", "Index")
+                    </p>
+                </dl>
+
+                @section Scripts {
+                    <!-- Bootstrap core JavaScript-->
+                    <script src="~/Content/loginassets/vendor/jquery/jquery.min.js"></script>
+                    <script src="~/Content/loginassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+                    <!-- Core plugin JavaScript-->
+                    <script src="~/Content/loginassets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+                    <!-- Custom scripts for all pages-->
+                    <script src="~/Content/loginassets/js/sb-admin-2.min.js"></script>
+
+                    <!-- Page level plugins -->
+                    <script src="~/Content/loginassets/vendor/datatables/jquery.dataTables.min.js"></script>
+                    <script src="~/Content/loginassets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+                    <!-- Page level custom scripts -->
+                    <script src="~/Content/loginassets/js/demo/datatables-demo.js"></script>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- End of Main Content -->

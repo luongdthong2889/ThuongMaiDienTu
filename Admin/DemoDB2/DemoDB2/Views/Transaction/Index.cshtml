@@ -1,0 +1,159 @@
+﻿@model IEnumerable<DemoDB2.Models.TRANSACTION>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Danh sách đơn hàng</h1>
+    @*<p class="mb-4">
+            @Html.ActionLink("Tạo đơn hàng mới", "Create")
+        </p>*@
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thông tin đơn hàng</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã Đơn</th>
+                            <th>Họ Tên</th>
+                            <th>Email</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Địa Chỉ</th>
+                            <th>Tổng Tiền</th>
+                            <th>Cổng Thanh Toán</th>
+                            <th>Phương Thức Thanh Toán</th>
+                            <th>Ngày Tạo GD</th>
+                            <th>Trạng Thái GD</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Mã Đơn</th>
+                            <th>Họ Tên</th>
+                            <th>Email</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Địa Chỉ</th>
+                            <th>Tổng Tiền</th>
+                            <th>Cổng Thanh Toán</th>
+                            <th>Phương Thức Thanh Toán</th>
+                            <th>Ngày Tạo GD</th>
+                            <th>Trạng Thái GD</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.transaction_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.user_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.user_email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.user_phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.user_address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.payment)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.payment_info)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.transaction_created)
+                                </td>
+                                <td>
+                                    @{
+                                        if (item.transaction_status == 1)
+                                        {
+                                            <p style="color:red">Chưa tiếp nhận</p>
+                                        }
+                                        else if (item.transaction_status == 2)
+                                        {
+                                            <p style="color:slateblue">Chờ giao hàng</p>
+                                        }
+                                        else if (item.transaction_status == 3)
+                                        {
+                                            <p style="color:green">Đã Thanh Toán</p>
+                                        }
+                                        else if (item.transaction_status == 4)
+                                        {
+                                            <p style="color:green">Đã Hoàn Thành</p>
+                                        }
+                                        else if (item.transaction_status == -1)
+                                        {
+                                            <p style="color:brown">Khách yêu cầu hủy đơn</p>
+                                        }
+                                    }
+
+                                </td>
+                                <td>
+                                    @{ if (item.transaction_status == 1)
+                                        {
+                                            @Html.ActionLink("Tiếp Nhận", "Duyet", new { id = item.transaction_id }); <p>|</p>
+                                        }
+                                        else if (item.transaction_status == 2)
+                                        {
+                                            @Html.ActionLink("Hoàn tất thanh toán", "Duyet", new { id = item.transaction_id }); <p>|</p>
+                                        }
+                                        else if (item.transaction_status == -1)
+                                        {
+                                            @Html.ActionLink("Chấp nhận hủy đơn", "Delete", new { id = item.transaction_id }); <p>|</p>
+                                        }
+                                        else if (item.transaction_status == 3)
+                                        {
+                                            @Html.ActionLink("Hoàn Thành", "Duyet", new { id = item.transaction_id }); <p>|</p>
+                                        }
+                                    }
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.transaction_id }) |
+                                    @Html.ActionLink("Xem chi tiết", "Detail", new { id = item.transaction_id }) |
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+@section Scripts{
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/loginassets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/loginassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/loginassets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/loginassets/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="~/Content/loginassets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/loginassets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Content/loginassets/js/demo/datatables-demo.js"></script>
+}

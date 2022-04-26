@@ -1,0 +1,80 @@
+﻿@model IEnumerable<DoGiaDung.Models.NEW>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+@*<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.tittle, "Details", new { id = item.new_id })
+            </td>
+            <td>
+                <img src="@Url.Content(item.new_image)" height="50px" width="50px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.new_created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ADMIN.username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CATALOG.catalog_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TAG.tag_name)
+            </td>
+        </tr>
+    }
+
+</table>*@
+<section id="aa-catg-head-banner">
+    <img src="~/img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>Tin Tức</h2>
+                <ol class="breadcrumb">
+                    <li><a href="/Home/Index">Home</a></li>
+                    <li class="active">Tin Tức</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <br />
+            <h2>Catalog: </h2>
+            @{ Html.RenderAction("CatalogPartial", "Product");}
+        </div>
+        <div class="col-md-10">
+            <section class="row-item-grid">
+                @foreach (var item in Model)
+                {
+                    <br />
+                    <div class="card mb-3" style="max-width: 100%;">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="@Url.Content(item.new_image)" class="card-img" height="250" width="200">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h1 class="card-title">@Html.ActionLink(item.tittle, "Details", new { id = item.new_id })</h1>
+                                    <p class="card-text h-color-price">Catalog: @Html.ActionLink(item.CATALOG.catalog_name, "Index", "Product", new { catalog = item.CATALOG.catalog_name.Trim() }, "")</p>
+                                    <p class="card-text h-color-price">Tag: @Html.DisplayFor(itemmodel => item.TAG.tag_name)</p>
+                                    <p class="card-text"><img src="~/Content/icon/user-regular.svg" width="20" height="20" />Người đăng: @Html.DisplayFor(itemmodel => item.ADMIN.username)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </section>
+        </div>
+    </div>
+</div>

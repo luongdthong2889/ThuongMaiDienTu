@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="067642eae0a046dfa67c6a488246fe57" Name="Diagram1">
+        <EntityTypeShape EntityType="DBGiaDungModel.ADMIN" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.CATALOG" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.FEEDBACK" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.NEW" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.ORDER" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.PRODUCT" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.SLIDE" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.sysdiagram" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.TAG" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.TRANSACTION" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGiaDungModel.USER" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="DBGiaDungModel.FK_NEW_ADMIN" ManuallyRouted="false" />
+        <AssociationConnector Association="DBGiaDungModel.FK_NEW_CATALOG" ManuallyRouted="false" />
+        <AssociationConnector Association="DBGiaDungModel.FK_PRODUCT_CATALOG" ManuallyRouted="false" />
+        <AssociationConnector Association="DBGiaDungModel.FK_FEEDBACK_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="DBGiaDungModel.FK_NEW_TAG" ManuallyRouted="false" />
+        <AssociationConnector Association="DBGiaDungModel.FK_ORDER_PRODUCT" ManuallyRouted="false" />
+        <AssociationConnector Association="DBGiaDungModel.FK_ORDER_TRANSACTION" ManuallyRouted="false" />
+        <AssociationConnector Association="DBGiaDungModel.FK_TRANSACTION_USER" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

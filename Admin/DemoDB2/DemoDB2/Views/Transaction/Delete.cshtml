@@ -1,0 +1,156 @@
+﻿@model DemoDB2.Models.TRANSACTION
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Xóa đơn hàng</h6>
+            </div>
+            <div class="card-body">
+
+                <h3>Bạn có chắc chắn muốn xóa không?</h3>
+                <div>
+                    <h4>Thông tin đơn hàng</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_email)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_phone)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_phone)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_address)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_address)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.amount)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.amount)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.payment)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.payment)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.payment_info)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.payment_info)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.message)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.message)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.transaction_created)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.transaction_created)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.security)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.security)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.transaction_status)
+                        </dt>
+
+                        <dd>
+                            @{
+                                if (Model.transaction_status == 1)
+                                {
+                                    <p>Chưa Thanh Toán</p>
+                                }
+                                else if (Model.transaction_status == 2)
+                                {
+                                    <p>Đã Thanh Toán</p>
+                                }
+                            }
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Xóa" class="btn btn-primary" /> |
+                            @Html.ActionLink("Về Danh sách", "Index")
+                        </div>
+                    }
+                    @section Scripts {
+                        <!-- Bootstrap core JavaScript-->
+                        <script src="~/Content/loginassets/vendor/jquery/jquery.min.js"></script>
+                        <script src="~/Content/loginassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+                        <!-- Core plugin JavaScript-->
+                        <script src="~/Content/loginassets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+                        <!-- Custom scripts for all pages-->
+                        <script src="~/Content/loginassets/js/sb-admin-2.min.js"></script>
+
+                        <!-- Page level plugins -->
+                        <script src="~/Content/loginassets/vendor/datatables/jquery.dataTables.min.js"></script>
+                        <script src="~/Content/loginassets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+                        <!-- Page level custom scripts -->
+                        <script src="~/Content/loginassets/js/demo/datatables-demo.js"></script>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- End of Main Content -->

@@ -1,0 +1,178 @@
+﻿@model DoGiaDung.Models.NEW
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+@*<h2>Details</h2>
+
+<div>
+    <h4>NEW</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tittle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tittle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.new_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.new_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.detail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.detail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.new_created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.new_created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADMIN.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADMIN.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATALOG.catalog_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATALOG.catalog_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TAG.tag_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TAG.tag_name)
+        </dd>
+
+    </dl>
+</div>*@
+<style>
+    .unstyle {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        margin-top: 10px;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
+
+    .propertyname {
+        display: inline;
+        color: #000;
+        text-decoration: none;
+    }
+</style>
+
+<section id="aa-catg-head-banner">
+    <img src="~/img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>Tin Tức</h2>
+                <ol class="breadcrumb">
+                    <li><a href="/Home/Index">Home</a></li>
+                    <li class="#">Tin Tức</li>
+                    <li class="active">@Html.DisplayFor(s=>s.tittle)</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 unstyle">
+            <br />
+            <h2 style="margin-left:100px">@Html.DisplayFor(s=>s.tittle)</h2>
+            <hr />
+            <div style="margin-left:100px">
+                <h3>Tin tức</h3>
+                <dl class="dl-horizontal">
+                    <dd>
+                        <img src="@Url.Content(Model.new_image)" width="250" height="250" />
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.new_created)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.new_created)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ADMIN.username)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ADMIN.username)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CATALOG.catalog_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CATALOG.catalog_name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TAG.tag_name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TAG.tag_name)
+                    </dd>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.description)
+                    </dd>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.detail)
+                    </dd>
+
+                </dl>
+            </div>
+            <br />
+        </div>
+        <div class="col-md-2">
+            <br />
+            <br />
+            @{ Html.RenderAction("CatalogPartial", "Product");}
+            <br />
+        </div>
+</div>
+</div>
+<br />

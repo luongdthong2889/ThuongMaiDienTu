@@ -1,0 +1,154 @@
+﻿@model DoGiaDung.Models.TRANSACTION
+
+@{
+    ViewBag.Title = "YeuCauHuyDon";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+<section id="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br /><br /><br />
+                <h2>Yêu cầu hủy đơn</h2>
+                <div>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Mã Order:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.transaction_id)
+                        </dd>
+
+                        <dt>
+                            Tên người Order:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_name)
+                        </dd>
+
+                        <dt>
+                            Email Adress:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_email)
+                        </dd>
+
+                        <dt>
+                            Phone Adress:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_phone)
+                        </dd>
+
+                        <dt>
+                            Dịa chỉ:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_address)
+                        </dd>
+
+                        <dt>
+                            Tổng tiền:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.amount)
+                        </dd>
+
+                        <dt>
+                            Hình thức trả:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.payment_info)
+                        </dd>
+
+                        <dt>
+                            Lời Nhắn:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.message)
+                        </dd>
+
+                        <dt>
+                            Ngày Order:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.transaction_created)
+                        </dd>
+
+                        <dt>
+                            Trạng thái Order:
+                        </dt>
+
+                        <dd>
+                            @{
+                                if (Model.transaction_status == 1)
+                                {
+                                    <p style="color:red">Chưa tiếp nhận</p>
+                                }
+                                else if (Model.transaction_status == 2)
+                                {
+                                    <p style="color:slateblue">Chờ giao hàng</p>
+                                }
+                                else if (Model.transaction_status == 3)
+                                {
+                                    <p style="color:green">Đã Thanh Toán</p>
+                                }
+                                else if (Model.transaction_status == 4)
+                                {
+                                    <p style="color:green">Đã Hoàn Thành</p>
+                                }
+                                else if (Model.transaction_status == -1)
+                                {
+                                    <p style="color:brown">Đã gửi yêu cầu hủy đơn</p>
+                                }
+                            }
+                        </dd>
+
+                        <hr />
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Số Lượng</th>
+                                    <th>Tổng Tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ORDERs)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(model => item.PRODUCT.product_name)</td>
+                                        <td>@Html.DisplayFor(model => item.quantity)</td>
+                                        <td>@Html.DisplayFor(model => item.amout)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <h2>Bạn có chắc muốn hủy đơn?</h2>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Gửi yêu cầu" class="btn btn-success"/> |
+                                @Html.ActionLink("Trở về trang lịch sử", "History")
+                            </div>
+                        }
+                        </span>
+                    </dl>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,249 @@
+﻿@using DoGiaDung.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<!-- catg header banner section -->
+<section id="aa-catg-head-banner">
+    <img src="~/img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+    <div class="aa-catg-head-banner-area">
+        <div class="container">
+            <div class="aa-catg-head-banner-content">
+                <h2>Cart Page</h2>
+                <ol class="breadcrumb">
+                    <li><a href="/Home/Index">Home</a></li>
+                    <li class="active">Cart</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / catg header banner section -->
+@if (Session["Cart"] != null)
+{
+    using (Html.BeginForm("Update_Cart", "GioHang", FormMethod.Post))
+    {
+        <!-- Cart view section -->
+        <section id="cart-view">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cart-view-area">
+                            <div class="cart-view-table">
+                                <form action="">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>Product</th>
+                                                    <th>Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var cart in (List<Cart>)Session["Cart"])
+                                                {
+                                                    int total1 = cart.Product.price.Value * cart.Quantity;
+                                                    <tr>
+                                                        <td><a class="remove" href="/GioHang/Delete/@cart.Product.product_id"><fa class="fa fa-close"></fa></a></td>
+                                                        <td><a href="/Product/Product_Detail/@cart.Product.product_id"><img src="@Url.Content(cart.Product.image_link)" alt="img"></a></td>
+                                                        <td><a class="aa-cart-title" href="/Product/Product_Detail/@cart.Product.product_id">@Html.DisplayFor(model => cart.Product.product_name)</a></td>
+                                                        <td>@Html.DisplayFor(model => cart.Product.price)</td>
+                                                        <td>
+                                                            <input class="aa-cart-quantity" min="1" type="number" max="@cart.Product.quantity" value="@cart.Quantity" name="soluong" id="soluong" /><span id="errormsg" style="color:red"></span>
+                                                        </td>
+                                                        <td>@total1</td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td colspan="6" class="aa-cart-view-bottom">
+                                                        <div class="aa-cart-coupon">
+                                                            <input class="aa-coupon-code" type="text" placeholder="Coupon">
+                                                            <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
+                                                        </div>
+                                                        <input type="submit" value="Update Cart" class="aa-cart-view-btn" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                                <!-- Cart Total view -->
+                                @{ List<Cart> temp = (List<Cart>)Session["Cart"];
+                                    var total = String.Format("{0:N0}", temp.Sum(x => x.Product.price * x.Quantity));
+                                    <div class="cart-view-total">
+                                        <h4>Cart Totals</h4>
+                                        <table class="aa-totals-table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Subtotal</th>
+                                                    <td>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Total</th>
+                                                    <td>@total</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        @{ 
+                                            if (Session["user_email"] == null)
+                                            {
+                                                <a href="/User/Index" class="aa-cart-view-btn">Proced to Checkout</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/GioHang/Checkout_view" class="aa-cart-view-btn">Proced to Checkout</a>
+                                            }
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- / Cart view section -->
+    }
+}
+else
+{
+    <!-- Cart view section -->
+    <section id="cart-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-view-area">
+                        <div class="cart-view-table">
+                            <form action="">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @*@foreach (var cart in (List<Cart>)Session["Cart"])
+                                                {
+                                                    int total1 = cart.Product.price.Value * cart.Quantity;
+                                                    <tr>
+                                                        <td><a class="remove" href="/GioHang/Delete/@cart.Product.product_id"><fa class="fa fa-close"></fa></a></td>
+                                                        <td><a href="/Product/Product_Detail/@cart.Product.product_id"><img src="@Url.Content(cart.Product.image_link)" alt="img"></a></td>
+                                                        <td><a class="aa-cart-title" href="/Product/Product_Detail/@cart.Product.product_id">@Html.DisplayFor(model => cart.Product.product_name)</a></td>
+                                                        <td>@Html.DisplayFor(model => cart.Product.price)</td>
+                                                        <td>
+                                                            <input class="aa-cart-quantity" min="1" type="number" max="@cart.Product.quantity" value="@cart.Quantity" name="soluong" id="soluong" /><span id="errormsg" style="color:red"></span>
+                                                        </td>
+                                                        <td>@total1</td>
+                                                    </tr>
+                                                }*@
+                                            @*<tr>
+                                                    <td colspan="6" class="aa-cart-view-bottom">
+                                                        <div class="aa-cart-coupon">
+                                                            <input class="aa-coupon-code" type="text" placeholder="Coupon">
+                                                            <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
+                                                        </div>
+                                                        <input type="submit" value="Update Cart" class="aa-cart-view-btn" />
+                                                    </td>
+                                                </tr>*@
+                                            <tr>
+                                                <td colspan="6">Không có sản phẩm trong giỏ hàng</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                            <!-- Cart Total view -->
+                            <!--<div class="cart-view-total">
+                                <h4>Cart Totals</h4>
+                                <table class="aa-totals-table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Subtotal</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Total</th>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>-->
+                            @*<a href="#" class="aa-cart-view-btn">Proced to Checkout</a>*@
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- / Cart view section -->
+}
+<!-- Subscribe section -->
+<section id="aa-subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-subscribe-area">
+                    <h3>Subscribe our newsletter </h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>
+                    <form action="" class="aa-subscribe-form">
+                        <input type="email" name="" id="" placeholder="Enter your Email">
+                        <input type="submit" value="Subscribe">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Subscribe section -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#soluong").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                $("#errormsg").html("Chỉ Nhập Số!!").show().fadeOut("slow");
+                return false;
+            }
+        });
+    });</script>
+<script type="text/javascript">
+    document.getElementById("soluong").addEventListener("click", function (e) {
+        const value = this.value,
+            max = this.getAttribute("max"),
+            /*            min = this.getAttribute("min"),*/
+            /*            minned = this.dataset.minned === "true";*/
+            maxed = this.dataset.maxed === "true";
+        if (value === max && maxed) {
+            alert("đã đạt đến tổng số lưởng sản phẩm có trong kho");
+        }
+        //if (value === min && minned) {
+        //    alert("Value is at 0");
+        //}
+        this.dataset.maxed = value === max ? "true" : "false";
+        /*        this.dataset.minned = value === min ? "true" : "false";*/
+    })
+
+    document.getElementById("soluong").addEventListener("input", function (e) {
+        const value = this.value || 0,
+            min = this.getAttribute("min"),
+            max = this.getAttribute("max");
+        if (value != "" && value > max || value < min) {
+            alert(`tổng số lượng sản phẩm có trong kho là ${max}, chỉ nhập từ ${min} đến ${max}`);
+            this.value = "";
+        }
+        this.dataset.maxed = value === max ? "true" : "false";
+        this.dataset.minned = value === min ? "true" : "false";
+    })
+</script>

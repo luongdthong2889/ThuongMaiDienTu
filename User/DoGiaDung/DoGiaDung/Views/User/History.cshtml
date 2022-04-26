@@ -1,0 +1,82 @@
+﻿@*@model IEnumerable<DoGiaDung.Models.TRANSACTION>*@
+@using DoGiaDung.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<TRANSACTION>
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+<section id="cart-view">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br /><br />
+                <h2>Lịch Sử Mua Hàng</h2>
+                <div class="cart-view-area">
+                    <div class="cart-view-table aa-wishlist-table">
+                        <form action="">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+
+                                        <tr>
+                                            <th>Mã đơn</th>
+                                            <th>Tình trạng</th>
+                                            <th>Tổng Tiền</th>
+                                            <th>Ngày Mua</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tbody>
+                                            <tr>
+                                                <td><a class="remove" href="#">@Html.DisplayFor(x => item.transaction_id)</a></td>
+                                                <td>
+                                                    @{
+                                                        if (item.transaction_status == 1)
+                                                        {
+                                                            <p style="color:red">Chưa tiếp nhận</p>
+                                                        }
+                                                        else if (item.transaction_status == 2)
+                                                        {
+                                                            <p style="color:slateblue">Chờ giao hàng</p>
+                                                        }
+                                                        else if (item.transaction_status == 3)
+                                                        {
+                                                            <p style="color:green">Đã Thanh Toán</p>
+                                                        }
+                                                        else if (item.transaction_status == 4)
+                                                        {
+                                                            <p style="color:green">Đã Hoàn Thành</p>
+                                                        }
+                                                        else if (item.transaction_status == -1)
+                                                        {
+                                                            <p style="color:brown">Đã gửi yêu cầu hủy đơn</p>
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>@Html.DisplayFor(x => item.amount)</td>
+                                                <td>@Html.DisplayFor(x => item.transaction_created)</td>
+                                                <td><a href="/User/DetailHis/@item.transaction_id" class="aa-add-to-cart-btn">Xem Chi Tiết</a></td>
+                                                <td><a href="/User/YeuCauHuyDon/@item.transaction_id" class="aa-add-to-cart-btn">Yêu cầu hủy đơn</a></td>
+                                            </tr>
+
+                                        </tbody>
+                                    }
+                                </table>
+                                @Html.PagedListPager(Model, page => Url.Action("History",
+                                                                                    new { page }))
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

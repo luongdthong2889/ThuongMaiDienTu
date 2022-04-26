@@ -1,0 +1,67 @@
+﻿@model DoGiaDung.Models.ORDER
+
+@{
+    ViewBag.Title = "s";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>s</h2>
+
+<div>
+    <h4>ORDER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amout)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amout)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.order_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCT.product_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCT.product_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANSACTION.user_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRANSACTION.user_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.order_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

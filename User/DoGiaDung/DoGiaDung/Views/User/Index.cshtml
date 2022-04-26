@@ -1,0 +1,58 @@
+﻿@model DoGiaDung.Models.USER
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Đăng Nhập</title>
+</head>
+<body>
+    <section id="aa-myaccount">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="aa-myaccount-area">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="aa-myaccount-login">
+                                    <h2>Đăng nhập</h2>
+                                    <form action="/User/LoginAcc" class="aa-login-form" method="post">
+                                        <label for="">Email address<span>*</span></label>
+                                        <input type="text" name="email" placeholder="Email">
+                                        <label for="">Password<span>*</span></label>
+                                        <input type="password" name="pass" placeholder="Password">
+                                        <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label></br>
+                                        <button class="aa-browse-btn" type="submit">Login</button><br />
+                                        <hr /><p style="color:red;resize:15px;">@ViewBag.ErrorInfo</p>
+                                        <hr /><p class="aa-lost-password"><a href="/User/ForgotPassword">Quên mật khẩu?</a></p>
+                                        <div class="aa-register-now">
+                                            <a href="/User/RegisterUser">Đăng ký tài khoản!</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

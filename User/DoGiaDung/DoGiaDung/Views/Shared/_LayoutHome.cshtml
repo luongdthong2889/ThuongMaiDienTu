@@ -1,0 +1,471 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daily Shop | Home</title>
+
+    @using DoGiaDung.Models
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap -->
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet">
+    <!-- SmartMenus jQuery Bootstrap Addon CSS -->
+    <link href="~/Content/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+    <!-- Product view slider -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/jquery.simpleLens.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/slick.css">
+    <!-- price picker slider -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/nouislider.css">
+    <!-- Theme color -->
+    <link id="switcher" href="~/Content/css/theme-color/default-theme.css" rel="stylesheet">
+    <!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
+    <!-- Top Slider CSS -->
+    <link href="~/Content/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+
+    <!-- Main style sheet -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"> <!-- range slider -->
+    <!-- font awesome style -->
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="~/Content/css/responsive.css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+    <!-- wpf loader Two -->
+    <div id="wpf-loader-two">
+        <div class="wpf-loader-two-inner">
+            <span>Loading</span>
+        </div>
+    </div>
+    <!-- / wpf loader Two -->
+    <!-- SCROLL TOP BUTTON -->
+
+    <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
+    <!-- END SCROLL TOP BUTTON -->
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="ke4eWSGn"></script>
+
+    <!-- Start header section -->
+    <header id="aa-header">
+        <!-- start header top  -->
+        <div class="aa-header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-header-top-area">
+                            <!-- start header top left -->
+                            <div class="aa-header-top-left">
+
+
+                                <!-- start cellphone -->
+                                <div class="cellphone hidden-xs">
+                                    <p><span class="fa fa-phone"></span>00-62-658-658</p>
+                                </div>
+                                <!-- / cellphone -->
+                            </div>
+                            <!-- / header top left -->
+                            <div class="aa-header-top-right">
+                                <ul class="aa-head-top-nav-right">
+                                    @if (Session["user_email"] == null)
+                                    {
+
+                                        <li class="hidden-xs"><a href="/GioHang/Index">Giỏ Hàng</a></li>
+                                        <li class="hidden-xs"><a href="/User/RegisterUser">Đăng ký</a></li>
+                                        <li><a href="" data-toggle="modal" data-target="#login-modal">Đăng Nhập</a></li>
+                                    }
+                                    @if (Session["user_email"] != null)
+                                    {
+                                        <li class="hidden-xs"><a href="/User/History">Lịch Sử Mua Hàng</a></li>
+                                        <li class="hidden-xs"><a href="/GioHang/Index">Giỏ Hàng</a></li>
+                                        <li class="hidden-xs"><a href="/User/ThongTin">Tài khoản của tôi</a></li>
+                                        <li class="hidden-xs"><a href="/User/LogOutUser">Đăng Xuất</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / header top  -->
+        <!-- start header bottom  -->
+        <div class="aa-header-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-header-bottom-area">
+                            <!-- logo  -->
+                            <div class="aa-logo">
+                                <!-- Text based logo -->
+                                <a href="/Home/Index">
+
+                                    <p><strong>Đồ Gia Dụng</strong> <span>Mua sắm Online</span></p>
+                                </a>
+                                <!-- img based logo -->
+                                <!-- <a href="index.html"><img src="~/img/logo.jpg" alt="logo img"></a> -->
+                            </div>
+                            <!-- / logo  -->
+                            <!-- cart box -->
+                            @if (Session["Cart"] == null)
+                            {
+                                <div class="aa-cartbox">
+                                    <a class="aa-cart-link" href="/GioHang/Index">
+                                        <span class="fa fa-shopping-basket"></span>
+                                        <span class="aa-cart-title">SHOPPING CART</span>
+                                        <span class="aa-cart-notify">0</span>
+                                    </a>
+                                    <div class="aa-cartbox-summary">
+                                        <ul>
+                                            <li>
+                                                <span class="aa-cartbox-total-title">
+                                                    Không có sản phẩm trong giỏ
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        @*<a class="aa-cartbox-checkout aa-primary-btn" href="#">Checkout</a>*@
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="aa-cartbox">
+                                    <a class="aa-cart-link" href="/GioHang/Index">
+                                        <span class="fa fa-shopping-basket"></span>
+                                        <span class="aa-cart-title">SHOPPING CART</span>
+                                        @{
+                                            List<Cart> a = (List<Cart>)Session["Cart"];
+                                            if (a != null)
+                                            {
+                                                <span class="aa-cart-notify">@a.Sum(x => x.Quantity)</span>
+                                            }
+                                        }
+                                    </a>
+                                    <div class="aa-cartbox-summary">
+                                        <ul>
+                                            @foreach (var item in (List<Cart>)Session["Cart"])
+                                            {
+                                                <li>
+                                                    <a class="aa-cartbox-img" href="/Product/Product_Detail/@item.Product.product_id"><img src="@Url.Content(item.Product.image_link)" alt="img"></a>
+                                                    <div class="aa-cartbox-info">
+                                                        <h4><a href="/Product/Product_Detail/@item.Product.product_id">@item.Product.product_name</a></h4>
+                                                        <p>@item.Quantity x @item.Product.price</p>
+                                                    </div>
+                                                    <a class="aa-remove-product" href="/GioHang/Delete/@item.Product.product_id"><span class="fa fa-times"></span></a>
+                                                </li>
+                                            }
+                                            @{
+                                                List<Cart> b = (List<Cart>)Session["Cart"];
+                                                var total = a.Sum(x => x.Product.price * x.Quantity);
+                                                <li>
+                                                    <span class="aa-cartbox-total-title">
+                                                        Total
+                                                    </span>
+                                                    <span class="aa-cartbox-total-price">
+                                                        @total
+                                                    </span>
+                                                </li>
+                                            }
+                                        </ul>
+                                        <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
+                                    </div>
+                                </div>
+                            }
+                            <!-- / cart box -->
+                            <!-- search box -->
+                            @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+                            {
+                                <div class="aa-search-box">
+                                    <form action="">
+                                        <input type="text" name="searchstring" id="searchstring" placeholder="Search sản phẩm. 'ở đây' ">
+                                        <button type="submit"><span class="fa fa-search"></span></button>
+                                    </form>
+                                </div>
+                            }
+                            <!-- / search box -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / header bottom  -->
+    </header>
+    <!-- / header section -->
+    <!-- menu -->
+    <section id="menu">
+        <div class="container">
+            <div class="menu-area">
+                <!-- Navbar -->
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <!-- Left nav -->
+                        <ul class="nav navbar-nav">
+                            <li><a href="/Home/Index">Home</a></li>
+                            <li><a href="/Product/Index">Products</a></li>
+                            <li class="">
+                                <a href="#" class="has-submenu" id="sm-16417173511331372-1" aria-haspopup="true" aria-controls="sm-16417173511331372-2" aria-expanded="false">Đồ dùng bếp <span class="caret"></span></a>
+                                <ul class="dropdown-menu sm-nowrap" id="sm-16417173511331372-2" role="group" aria-hidden="true" aria-labelledby="sm-16417173511331372-1" aria-expanded="false" style="width: auto; min-width: 10em; display: none; max-width: 20em; top: auto; left: 0px; margin-left: 0px; margin-top: 0px;">
+                                    <li><a href="/Product?catalog=Nồi%20Cơm%20-%20Nồi%20Chiên">Nồi cơm điện</a></li>
+                                    <li><a href="/Product?catalog=Lò%20Vi%20Sóng%20-%20Lò%20Nướng">Lò vi sóng</a></li>
+                                    <li><a href="/Product?catalog=Lò%20Vi%20Sóng%20-%20Lò%20Nướng">Lò Nướng</a></li>
+                                    <li><a href="/Product?searchstring=Chảo">Chảo</a></li>
+                                </ul>
+                            <li class="">
+                                <a href="#" class="has-submenu" id="sm-16417173511331372-1" aria-haspopup="true" aria-controls="sm-16417173511331372-2" aria-expanded="false">Điện lạnh<span class="caret"></span></a>
+                                <ul class="dropdown-menu sm-nowrap" id="sm-16417173511331372-2" role="group" aria-hidden="true" aria-labelledby="sm-16417173511331372-1" aria-expanded="false" style="width: auto; min-width: 10em; display: none; max-width: 20em; top: auto; left: 0px; margin-left: 0px; margin-top: 0px;">
+                                    <li><a href="/Product?catalog=Quạt%20-%20Quạt%20Điều%20Hoà">Quạt điều hòa</a></li>
+                                    <li><a href="/Product?catalog=Quạt%20-%20Quạt%20Điều%20Hoà">Quạt máy</a></li>
+                                    <li><a href="/Product?catalog=Lọc%20Không%20Khí">Lọc không khí</a></li>
+                                </ul>
+                            <li class="">
+                                <a href="#" class="has-submenu" id="sm-16417173511331372-1" aria-haspopup="true" aria-controls="sm-16417173511331372-2" aria-expanded="false">Sức khỏe<span class="caret"></span></a>
+                                <ul class="dropdown-menu sm-nowrap" id="sm-16417173511331372-2" role="group" aria-hidden="true" aria-labelledby="sm-16417173511331372-1" aria-expanded="false" style="width: auto; min-width: 10em; display: none; max-width: 20em; top: auto; left: 0px; margin-left: 0px; margin-top: 0px;">
+                                    <li><a href="/Product?catalog=Máy%20Lọc%20Nước">Máy lọc nước</a></li>
+                                    <li><a href="/Product?searchstring=cạo">Máy Cạo rau</a></li>
+                                    <li><a href="/Product?catalog=Sinh%20Tố%20-%20Xay%20Ép">Sinh tố</a></li>
+                                </ul>
+                            <li><a href="/Contact/Index">Contact</a></li>
+                        </ul>
+
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- / menu -->
+
+
+    @RenderBody()
+
+
+    <!-- footer -->
+    <footer id="aa-footer">
+        <!-- footer bottom -->
+        <div class="aa-footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-footer-top-area">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="aa-footer-widget">
+                                        <h3>Chính Sách Mua Hàng</h3>
+                                        <ul class="aa-footer-nav">
+                                            <li><a href="#">QĐ giá cả và hình thức thanh toán</a></li>
+                                            <li><a href="#">Quy định chung</a></li>
+                                            <li><a href="#">Chính sách trả góp</a></li>
+                                            <li><a href="#">Chính sách đổi trả và hoàn tiền</a></li>
+                                            <li><a href="#">Chính sách bảo hành</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-8">
+                                    <div class="aa-footer-widget">
+                                        <div class="aa-footer-widget">
+                                            <h3>Thanh Toán</h3>
+                                            <ul id="ul_top_hypers">
+                                                <!--begin::Li-->
+                                                <li class="payment">
+                                                    <div class="holder" style="float:left;">
+                                                        <div>
+                                                            <a href="#" style="color:#888888">
+                                                                <i style="font-size: 30px;" class="fa fa-qrcode" aria-hidden="true"></i>
+                                                                <p>QR Code</p>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                </li>
+                                                <!--end::Li-->
+                                                <!--begin::Li-->
+                                                <li>
+                                                    <div class="holder" style="float:left;color:#888888">
+                                                        <div>
+                                                            <a href="#" style="color:#888888">
+                                                                <i style="font-size: 30px;padding-left:5px" id="footer-colorimg" class="fa fa-money" aria-hidden="true"></i>
+                                                                <p style="padding-inline:5px;">Tiền mặt</p>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!--end::Li-->
+                                                <!--begin::Li-->
+                                                <li>
+                                                    <div class="holder" style="float:left;color:#888888">
+                                                        <div>
+                                                            <a href="#" style="color:#888888">
+                                                                <i style="font-size: 30px;" id="footer-colorimg" class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                                                                <p>Internet Banking</p>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!--end::Li-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="aa-footer-widget">
+                                        <div class="aa-footer-widget">
+                                            <h3>Thông Tin Dogiadung</h3>
+                                            <ul class="aa-footer-nav">
+                                                <li><a href="#">Thông tin liên hệ</a></li>
+                                                <li><a href="#">Thương hiệu</a></li>
+                                                <li><a href="#">Tìm kiếm</a></li>
+                                                <li><a href="#">FAQ</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="aa-footer-widget">
+                                        <div class="aa-footer-widget">
+                                            <h3>Liên Hệ</h3>
+                                            <address>
+                                                <p>818 Sư Vạn Hạnh P.11 Quận 10</p>
+                                                <p><span class="fa fa-phone"></span>+00-62-658-658</p>
+                                                <p><span class="fa fa-envelope"></span>dogiadungvn@gmail.com</p>
+                                            </address>
+                                            <div class="aa-footer-social">
+                                                <a href="#"><span class="fa fa-facebook"></span></a>
+                                                <a href="#"><span class="fa fa-twitter"></span></a>
+                                                <a href="#"><span class="fa fa-google-plus"></span></a>
+                                                <a href="#"><span class="fa fa-youtube"></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom -->
+        <div class="aa-footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-footer-bottom-area">
+                            <div class="aa-footer-payment">
+                                <span class="fa fa-cc-mastercard"></span>
+                                <span class="fa fa-cc-visa"></span>
+                                <span class="fa fa-paypal"></span>
+                                <span class="fa fa-cc-discover"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- / footer -->
+    <!-- Login Modal -->
+
+    @Html.AntiForgeryToken()
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4>Login or Register</h4>
+                    @using (Html.BeginForm("LoginAcc", "User", FormMethod.Post, new { @class = "aa-login-form" }))
+                    {
+                        <form class="aa-login-form" action="">
+                            <label for="">Email address<span>*</span></label>
+                            <input type="text" name="email" placeholder="Email">
+                            <label for="">Password<span>*</span></label>
+                            <input type="password" name="pass" placeholder="Password">
+                            <button class="aa-browse-btn" type="submit">Login</button>
+                            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
+                            <p class="aa-lost-password"><a href="/User/ForgotPassword">Quên mật khẩu?</a></p>
+                            <div class="aa-register-now">
+                                Chưa có tài khoản?<a href="/User/RegisterUser">Đăng ký tài khoản!</a>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+
+
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "107432671833099");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v12.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/Scripts/js/bootstrap.js"></script>
+    <!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="~/Scripts/js/jquery.smartmenus.js"></script>
+    <!-- SmartMenus jQuery Bootstrap Addon -->
+    <script type="text/javascript" src="~/Scripts/js/jquery.smartmenus.bootstrap.js"></script>
+    <!-- To Slider JS -->
+    <script src="~/Scripts/js/sequence.js"></script>
+    <script src="~/Scripts/js/sequence-theme.modern-slide-in.js"></script>
+    <!-- Product view slider -->
+    <script type="text/javascript" src="~/Scripts/js/jquery.simpleGallery.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/jquery.simpleLens.js"></script>
+    <!-- slick slider -->
+    <script type="text/javascript" src="~/Scripts/js/slick.js"></script>
+    <!-- Price picker slider -->
+    <script type="text/javascript" src="~/Scripts/js/nouislider.js"></script>
+    <!-- Custom js -->
+    <script src="~/Scripts/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+</body>
+</html>

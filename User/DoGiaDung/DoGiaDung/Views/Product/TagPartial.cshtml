@@ -1,0 +1,8 @@
+﻿
+@using DoGiaDung.Models;
+@model List<TAG>
+
+@foreach (var item in Model)
+{
+    <li>@Html.DisplayFor(s => item.tag_name)</li>
+}

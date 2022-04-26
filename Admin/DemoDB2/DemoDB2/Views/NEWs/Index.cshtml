@@ -1,0 +1,114 @@
+﻿@model IEnumerable<DemoDB2.Models.NEW>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Danh sách tin tức</h1>
+    <p class="mb-4">
+        @Html.ActionLink("Tạo tin tức mới", "Create")
+    </p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thông tin tin tức</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tiêu Đề</th>
+                            <th>Mô Tả</th>
+                            <th>Hình Ảnh</th>
+                            <th>Chi Tiết</th>
+                            <th>Ngày Tạo</th>
+                            <th>Người Tạo</th>
+                            <th>Tên Loại SP</th>
+                            <th>Tên Tag</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Tiêu Đề</th>
+                            <th>Mô Tả</th>
+                            <th>Hình Ảnh</th>
+                            <th>Chi Tiết</th>
+                            <th>Ngày Tạo</th>
+                            <th>Người Tạo</th>
+                            <th>Tên Loại SP</th>
+                            <th>Tên Tag</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tittle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.new_image)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.detail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.new_created)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ADMIN.username)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CATALOG.catalog_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TAG.tag_name)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.new_id }) |
+                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.new_id }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.new_id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+@section Scripts{
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/loginassets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/loginassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/loginassets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/loginassets/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="~/Content/loginassets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/loginassets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Content/loginassets/js/demo/datatables-demo.js"></script>
+}
+
+
+
